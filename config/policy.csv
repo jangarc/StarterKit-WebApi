@@ -1,0 +1,15 @@
+﻿# 授權規則
+p, reader, data, read
+p, writer, data, write
+p, admin, data, read
+p, admin, data, write
+p, admin, data, delete
+
+# 角色繼承
+g, border, reader
+g, border, writer
+
+# 使用者指定角色
+g, alice, border
+g, bob, reader
+g, arc, admin
