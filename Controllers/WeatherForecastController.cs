@@ -35,8 +35,6 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> InitBaseUserAndTenant(CancellationToken cancellationToken)
         {
-            
-
             if (await _dbCtx.Users.AnyAsync(u => u.Id == BaseConfig.SysUserId))
                 return BadRequest(new {error = true, message = "己被始化"});
 
@@ -66,6 +64,7 @@ namespace WebApi.Controllers
         }
 
         // http://localhost:5106/WeatherForecast/CreateUser?userName=apple2&birthday=1982/07/30
+        // http://localhost:5106/WeatherForecast/CreateUser?userName=Bbonflower&account=apple&birthday=1982/07/30&password=1234
         [HttpGet]
         public async Task<IActionResult> CreateUser([FromQuery] string userName, [FromQuery] string account, [FromQuery] string password, [FromQuery] DateTime? birthday, CancellationToken cancellationToken)
         {
@@ -162,7 +161,7 @@ namespace WebApi.Controllers
                 ArgumentNullException.ThrowIfNullOrWhiteSpace(password);
 
                 var targetUser = await _queryProcessor.ExecuteAsync(new GetUserByAccountQuery(account));
-                var isPass = _passwordHasher.VerifyPassword(password, targetUser.PasswordHash);
+                var isPass = _passwordHasher.VerifyPassword(password, targetUser.Password);
 
                 if (!isPass) 
                     return Ok(new { loginStatus = false, message = "驗證錯誤"});

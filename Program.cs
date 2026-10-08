@@ -1,3 +1,4 @@
+using Application.Common;
 using Infrastructure.BackgroundServices;
 using Infrastructure.Common;
 using Microsoft.AspNetCore.Mvc;
@@ -6,7 +7,8 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.BuildBaseService();
+builder.Services.AddInfrastructureLayer(builder.Configuration);
+builder.Services.AddApplicationLayer();
 builder.Host.UseInfrastructureHost();
 
 Log.Logger = new LoggerConfiguration()
