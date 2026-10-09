@@ -4,6 +4,10 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Company>Arc Studio</Company>
+    <Authors>CHANG,SHIH-HSIN</Authors>
+    <Copyright>Copyright © $([System.DateTime]::Now.ToString('yyyy')) YourCompany. All rights reserved.</Copyright>
+    <PackageLicenseExpression>AGPL-3.0-only</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
